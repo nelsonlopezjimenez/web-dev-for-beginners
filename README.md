@@ -169,7 +169,7 @@ You do not need to install docsify. Just cd into the web-dev-for-beginners folde
 npm run serve
 ```
 
-You should see a server starting at port 3000
+You should see a server starting at port 3000. If you do not see it, make sure you have docsify node_modules and three more files in your roaming/npm folder.
 
 ## 📘 PDF
 

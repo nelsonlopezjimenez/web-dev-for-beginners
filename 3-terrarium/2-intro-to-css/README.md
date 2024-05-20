@@ -1,11 +1,14 @@
 # Terrarium Project Part 2: Introduction to CSS
 
 ![Introduction to CSS](../../sketchnotes/webdev101-css.png)
+
 > Sketchnote by [Tomomi Imura](https://twitter.com/girlie_mac)
 
 ## Pre-Lecture Quiz
 
-[Pre-lecture quiz](https://ashy-river-0debb7803.1.azurestaticapps.net/quiz/17)
+[Pre-lecture quiz](http://localhost:8080/quiz/17)
+
+<!-- [Pre-lecture quiz](https://ashy-river-0debb7803.1.azurestaticapps.net/quiz/17) -->
 
 ### Introduction
 
@@ -21,8 +24,7 @@ You should have the HTML for your terrarium built and ready to be styled.
 
 > Check out video
 
-> 
-> [![Git and GitHub basics video](https://img.youtube.com/vi/6yIdOIV9p1I/0.jpg)](https://www.youtube.com/watch?v=6yIdOIV9p1I)
+> [![Git and GitHub basics video](https://img.youtube.com/vi/6yIdOIV9p1I/0.jpg)](https://www.youtube.com/watch?v=6yIdOIV9p1I) > **(https://www.youtube.com/watch?v=6yIdOIV9p1I)**
 
 ### Task
 
@@ -141,7 +143,7 @@ Notice that each plant in the HTML markup has a combination of ids and classes. 
 
 ```html
 <div class="plant-holder">
-	<img class="plant" alt="plant" id="plant1" src="./images/plant1.png" />
+  <img class="plant" alt="plant" id="plant1" src="./images/plant1.png" />
 </div>
 ```
 
@@ -255,15 +257,22 @@ Add a 'bubble' shine to the left bottom area of the jar to make it look more gla
 
 ![finished terrarium](./images/terrarium-final.png)
 
-To complete the post-lecture quiz, go through this Learn module: [Style your HTML app with CSS](https://docs.microsoft.com/learn/modules/build-simple-website/4-css-basics/?WT.mc_id=academic-77807-sagibbon)
+To complete the post-lecture quiz, go through this Learn module:
+[Style your HTML app with CSS](https://docs.microsoft.com/learn/modules/build-simple-website/4-css-basics/?WT.mc_id=academic-77807-sagibbon)
+
+[Style your HTML app with CSS](docs/Exercies - Style your HTML with CSS - Training \_ Microsoft Learn.html)
 
 ## Post-Lecture Quiz
 
-[Post-lecture quiz](https://ashy-river-0debb7803.1.azurestaticapps.net/quiz/18)
+[Post-lecture quiz](http://localhost:8080/quiz/18)
+
+<!-- [Post-lecture quiz](https://ashy-river-0debb7803.1.azurestaticapps.net/quiz/18) -->
 
 ## Review & Self Study
 
-CSS seems deceptively straightforward, but there are many challenges when trying to style an app perfectly for all browsers and all screen sizes. CSS-Grid and Flexbox are tools that have been developed to make the job a little more structured and more reliable. Learn about these tools by playing [Flexbox Froggy](https://flexboxfroggy.com/) and [Grid Garden](https://codepip.com/games/grid-garden/).
+CSS seems deceptively straightforward, but there are many challenges when trying to style an app perfectly for all browsers and all screen sizes. CSS-Grid and Flexbox are tools that have been developed to make the job a little more structured and more reliable.
+
+<!-- Learn about these tools by playing [Flexbox Froggy](https://flexboxfroggy.com/) and [Grid Garden](https://codepip.com/games/grid-garden/). -->
 
 ## Assignment
 

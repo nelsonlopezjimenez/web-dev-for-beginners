@@ -1,19 +1,22 @@
 # Terrarium Project Part 3: DOM Manipulation and a Closure
 
 ![DOM and a closure](../../sketchnotes/webdev101-js.png)
+
 > Sketchnote by [Tomomi Imura](https://twitter.com/girlie_mac)
 
 ## Pre-Lecture Quiz
 
-[Pre-lecture quiz](https://ashy-river-0debb7803.1.azurestaticapps.net/quiz/19)
+[Pre-lecture quiz](http://localhost:8080/quiz/19)
+
+<!-- [Pre-lecture quiz](https://ashy-river-0debb7803.1.azurestaticapps.net/quiz/19) -->
 
 ### Introduction
 
-Manipulating the DOM, or the "Document Object Model", is a key aspect of web development. According to [MDN](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction), "The Document Object Model (DOM) is the data representation of the objects that comprise the structure and content of a document on the web." The challenges around DOM manipulation on the web have often been the impetus behind using JavaScript frameworks instead of vanilla JavaScript to manage the DOM, but we will manage on our own!
+Manipulating the DOM, or the "Document Object Model", is a key aspect of web development. According to [MDN](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) **(https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction)**, "The Document Object Model (DOM) is the data representation of the objects that comprise the structure and content of a document on the web." The challenges around DOM manipulation on the web have often been the impetus behind using JavaScript frameworks instead of vanilla JavaScript to manage the DOM, but we will manage on our own!
 
-In addition, this lesson will introduce the idea of a [JavaScript closure](https://developer.mozilla.org/docs/Web/JavaScript/Closures), which you can think of as a function enclosed by another function so that the inner function has access to the outer function's scope.
+In addition, this lesson will introduce the idea of a [JavaScript closure](https://developer.mozilla.org/docs/Web/JavaScript/Closures) **(https://developer.mozilla.org/docs/Web/JavaScript/Closures)**, which you can think of as a function enclosed by another function so that the inner function has access to the outer function's scope.
 
-> JavaScript closures are a vast and complex topic. This lesson touches on the most basic idea that in this terrarium's code, you will find a closure: an inner function and an outer function constructed in a way to allow the inner function access to the outer function's scope. For much more information on how this works, please visit the [extensive documentation](https://developer.mozilla.org/docs/Web/JavaScript/Closures).
+> JavaScript closures are a vast and complex topic. This lesson touches on the most basic idea that in this terrarium's code, you will find a closure: an inner function and an outer function constructed in a way to allow the inner function access to the outer function's scope. For much more information on how this works, please visit the [extensive documentation](https://developer.mozilla.org/docs/Web/JavaScript/Closures) **(https://developer.mozilla.org/docs/Web/JavaScript/Closures)**.
 
 We will use a closure to manipulate the DOM.
 
@@ -21,7 +24,7 @@ Think of the DOM as a tree, representing all the ways that a web page document c
 
 ![DOM tree representation](./images/dom-tree.png)
 
-> A representation of the DOM and the HTML markup that references it. From [Olfa Nasraoui](https://www.researchgate.net/publication/221417012_Profile-Based_Focused_Crawler_for_Social_Media-Sharing_Websites)
+<!-- > A representation of the DOM and the HTML markup that references it. From [Olfa Nasraoui](https://www.researchgate.net/publication/221417012_Profile-Based_Focused_Crawler_for_Social_Media-Sharing_Websites) -->
 
 In this lesson, we will complete our interactive terrarium project by creating the JavaScript that will allow a user to manipulate the plants on the page.
 
@@ -34,10 +37,11 @@ You should have the HTML and CSS for your terrarium built. By the end of this le
 In your terrarium folder, create a new file called `script.js`. Import that file in the `<head>` section:
 
 ```html
-	<script src="./script.js" defer></script>
+<script src="./script.js" defer></script>
 ```
 
 > Note: use `defer` when importing an external JavaScript file into the html file so as to allow the JavaScript to execute only after the HTML file has been fully loaded. You could also use the `async` attribute, which allows the script to execute while the HTML file is parsing, but in our case, it's important to have the HTML elements fully available for dragging before we allow the drag script to be executed.
+
 ---
 
 ## The DOM elements
@@ -71,23 +75,23 @@ What's going on here? You are referencing the document and looking through its D
 
 ## The Closure
 
-Now you are ready to create the dragElement closure, which is an outer function that encloses an inner function or functions (in our case, we will have three). 
+Now you are ready to create the dragElement closure, which is an outer function that encloses an inner function or functions (in our case, we will have three).
 
 Closures are useful when one or more functions need to access an outer function's scope. Here's an example:
 
 ```javascript
-function displayCandy(){
-	let candy = ['jellybeans'];
-	function addCandy(candyType) {
-		candy.push(candyType)
-	}
-	addCandy('gumdrops');
+function displayCandy() {
+  let candy = ['jellybeans'];
+  function addCandy(candyType) {
+    candy.push(candyType);
+  }
+  addCandy('gumdrops');
 }
 displayCandy();
-console.log(candy)
+console.log(candy);
 ```
 
-In this example, the displayCandy function surrounds a function that pushes a new candy type into an array that already exists in the function. If you were to run this code, the `candy` array would be undefined, as it is a local variable (local to the closure). 
+In this example, the displayCandy function surrounds a function that pushes a new candy type into an array that already exists in the function. If you were to run this code, the `candy` array would be undefined, as it is a local variable (local to the closure).
 
 ✅ How can you make the `candy` array accessible? Try moving it outside the closure. This way, the array becomes global, rather than remaining only available to the closure's local scope.
 
@@ -97,20 +101,20 @@ Under the element declarations in `script.js`, create a function:
 
 ```javascript
 function dragElement(terrariumElement) {
-	//set 4 positions for positioning on the screen
-	let pos1 = 0,
-		pos2 = 0,
-		pos3 = 0,
-		pos4 = 0;
-	terrariumElement.onpointerdown = pointerDrag;
+  //set 4 positions for positioning on the screen
+  let pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
+  terrariumElement.onpointerdown = pointerDrag;
 }
 ```
 
 `dragElement` get its `terrariumElement` object from the declarations at the top of the script. Then, you set some local positions at `0` for the object passed into the function. These are the local variables that will be manipulated for each element as you add drag and drop functionality within the closure to each element. The terrarium will be populated by these dragged elements, so the application needs to keep track of where they are placed.
 
-In addition, the terrariumElement that is passed to this function is assigned a `pointerdown` event, which is part of the [web APIs](https://developer.mozilla.org/docs/Web/API) designed to help with DOM management. `onpointerdown` fires when a button is pushed, or in our case, a draggable element is touched. This event handler works on both [web and mobile browsers](https://caniuse.com/?search=onpointerdown), with a few exceptions.
+In addition, the terrariumElement that is passed to this function is assigned a `pointerdown` event, which is part of the [web APIs](https://developer.mozilla.org/docs/Web/API) **(https://developer.mozilla.org/docs/Web/API/Element/pointerdown_event.html)** designed to help with DOM management. `onpointerdown` fires when a button is pushed, or in our case, a draggable element is touched. This event handler works on both [web and mobile browsers](https://caniuse.com/?search=onpointerdown), with a few exceptions.
 
-✅ The [event handler `onclick`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) has much more support cross-browser; why wouldn't you use it here? Think about the exact type of screen interaction you're trying to create here.
+✅ The [event handler `onclick`](https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick) **(https://developer.mozilla.org/docs/Web/API/GlobalEventHandlers/onclick.html)** has much more support cross-browser; why wouldn't you use it here? Think about the exact type of screen interaction you're trying to create here.
 
 ---
 
@@ -118,14 +122,14 @@ In addition, the terrariumElement that is passed to this function is assigned a 
 
 The `terrariumElement` is ready to be dragged around; when the `onpointerdown` event is fired, the function `pointerDrag` is invoked. Add that function right under this line: `terrariumElement.onpointerdown = pointerDrag;`:
 
-### Task 
+### Task
 
 ```javascript
 function pointerDrag(e) {
-	e.preventDefault();
-	console.log(e);
-	pos3 = e.clientX;
-	pos4 = e.clientY;
+  e.preventDefault();
+  console.log(e);
+  pos3 = e.clientX;
+  pos4 = e.clientY;
 }
 ```
 
@@ -133,7 +137,7 @@ Several things happen. First, you prevent the default events that normally happe
 
 > Come back to this line when you've built the script file completely and try it without `e.preventDefault()` - what happens?
 
-Second, open `index.html` in a browser window, and inspect the interface. When you click a plant, you can see how the 'e' event is captured. Dig into the event to see how much information is gathered by one pointer down event!  
+Second, open `index.html` in a browser window, and inspect the interface. When you click a plant, you can see how the 'e' event is captured. Dig into the event to see how much information is gathered by one pointer down event!
 
 Next, note how the local variables `pos3` and `pos4` are set to e.clientX. You can find the `e` values in the inspection pane. These values capture the x and y coordinates of the plant at the moment you click on it or touch it. You will need fine-grained control over the behavior of the plants as you click and drag them, so you keep track of their coordinates.
 
@@ -142,9 +146,9 @@ Next, note how the local variables `pos3` and `pos4` are set to e.clientX. You c
 Complete the initial function by adding two more pointer event manipulations under `pos4 = e.clientY`:
 
 ```html
-document.onpointermove = elementDrag;
-document.onpointerup = stopElementDrag;
+document.onpointermove = elementDrag; document.onpointerup = stopElementDrag;
 ```
+
 Now you are indicating that you want the plant to be dragged along with the pointer as you move it, and for the dragging gesture to stop when you deselect the plant. `onpointermove` and `onpointerup` are all parts of the same API as `onpointerdown`. The interface will throw errors now as you have not yet defined the `elementDrag` and the `stopElementDrag` functions, so build those out next.
 
 ## The elementDrag and stopElementDrag functions
@@ -157,31 +161,32 @@ Add the `elementDrag` function right after the closing curly bracket of `pointer
 
 ```javascript
 function elementDrag(e) {
-	pos1 = pos3 - e.clientX;
-	pos2 = pos4 - e.clientY;
-	pos3 = e.clientX;
-	pos4 = e.clientY;
-	console.log(pos1, pos2, pos3, pos4);
-	terrariumElement.style.top = terrariumElement.offsetTop - pos2 + 'px';
-	terrariumElement.style.left = terrariumElement.offsetLeft - pos1 + 'px';
+  pos1 = pos3 - e.clientX;
+  pos2 = pos4 - e.clientY;
+  pos3 = e.clientX;
+  pos4 = e.clientY;
+  console.log(pos1, pos2, pos3, pos4);
+  terrariumElement.style.top = terrariumElement.offsetTop - pos2 + 'px';
+  terrariumElement.style.left = terrariumElement.offsetLeft - pos1 + 'px';
 }
 ```
+
 In this function, you do a lot of editing of the initial positions 1-4 that you set as local variables in the outer function. What's going on here?
 
-As you drag, you reassign `pos1` by making it equal to `pos3` (which you set earlier as `e.clientX`)  minus the current `e.clientX` value. You do a similar operation to `pos2`. Then, you reset `pos3` and `pos4` to the new X and Y coordinates of the element. You can watch these changes in the console as you drag. Then, you manipulate the plant's css style to set its new position based on the new positions of `pos1` and `pos2`, calculating the plant's top and left X and Y coordinates based on comparing its offset with these new positions.
+As you drag, you reassign `pos1` by making it equal to `pos3` (which you set earlier as `e.clientX`) minus the current `e.clientX` value. You do a similar operation to `pos2`. Then, you reset `pos3` and `pos4` to the new X and Y coordinates of the element. You can watch these changes in the console as you drag. Then, you manipulate the plant's css style to set its new position based on the new positions of `pos1` and `pos2`, calculating the plant's top and left X and Y coordinates based on comparing its offset with these new positions.
 
-> `offsetTop` and `offsetLeft` are CSS properties that set an element's position based on that of its parent; its parent can be any element that is not positioned as `static`. 
+> `offsetTop` and `offsetLeft` are CSS properties that set an element's position based on that of its parent; its parent can be any element that is not positioned as `static`.
 
 All this recalculation of positioning allows you to fine-tune the behavior of the terrarium and its plants.
 
-### Task 
+### Task
 
 The final task to complete the interface is to add the `stopElementDrag` function after the closing curly bracket of `elementDrag`:
 
 ```javascript
 function stopElementDrag() {
-	document.onpointerup = null;
-	document.onpointermove = null;
+  document.onpointerup = null;
+  document.onpointermove = null;
 }
 ```
 
@@ -201,17 +206,18 @@ Add new event handler to your closure to do something more to the plants; for ex
 
 ## Post-Lecture Quiz
 
-[Post-lecture quiz](https://ashy-river-0debb7803.1.azurestaticapps.net/quiz/20)
+[Post-lecture quiz](http://localhost:8080/quiz/20)
+
+<!-- [Post-lecture quiz](https://ashy-river-0debb7803.1.azurestaticapps.net/quiz/20) -->
 
 ## Review & Self Study
 
-While dragging elements around the screen seems trivial, there are many ways to do this and many pitfalls, depending on the effect you seek. In fact, there is an entire [drag and drop API](https://developer.mozilla.org/docs/Web/API/HTML_Drag_and_Drop_API) that you can try. We didn't use it in this module because the effect we wanted was somewhat different, but try this API on your own project and see what you can achieve.
+While dragging elements around the screen seems trivial, there are many ways to do this and many pitfalls, depending on the effect you seek. In fact, there is an entire [drag and drop API](https://developer.mozilla.org/docs/Web/API/HTML_Drag_and_Drop_API) **(https://developer.mozilla.org/docs/Web/API/HTML_Drag_and_Drop_API)** that you can try. We didn't use it in this module because the effect we wanted was somewhat different, but try this API on your own project and see what you can achieve.
 
-Find more information on pointer events on the [W3C docs](https://www.w3.org/TR/pointerevents1/) and on [MDN web docs](https://developer.mozilla.org/docs/Web/API/Pointer_events).
+Find more information on pointer events on the [W3C docs](https://www.w3.org/TR/pointerevents1/) and on [MDN web docs](https://developer.mozilla.org/docs/Web/API/Pointer_events) **(https://developer.mozilla.org/docs/Web/API/Pointer_events.html)**.
 
 Always check browser capabilities using [CanIUse.com](https://caniuse.com/).
 
 ## Assignment
 
 [Work a bit more with the DOM](assignment.md)
-
