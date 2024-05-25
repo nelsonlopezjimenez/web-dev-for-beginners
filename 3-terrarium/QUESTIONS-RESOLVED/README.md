@@ -34,17 +34,15 @@ A small drag and drop code-meditation. With a little HTML, JS and CSS, you can b
 
 ## Questions on CSS
 
-1. ✅ you see absolutely nothing render. Why?
-
+1. ### ✅ you see absolutely nothing render. Why?
 1. ### what does the term **cascade** in CSS mean?
-
 1. ### How do you understand the term **inheritance** in the context of styling an HTML page?
-
+1. ### Can you make a nested style inherit a different property?
 1. ### in the `plant-holder` class the height was set to 13%, why?
-
-1. ### did you do: ✅ Experiment with switching the types of positioning of the side containers and the plant-holder. What happens?
-
-1. ### did you do: ✅ Try changing the jar colors and opacity vs. those of the dirt. What happens? Why?
+1. ### did you do?: ✅ Experiment with switching the types of positioning of the side containers and the plant-holder. What happens?
+1. ### ✅ Why do you need both a plant holder and a plant CSS selector?
+1. ### ✅ Experiment with switching the types of positioning of the side containers and the plant-holder. What happens?
+1. ### did you do?: ✅ Try changing the jar colors and opacity vs. those of the dirt. What happens? Why?
 
 
 ## Questions on JavaScript
