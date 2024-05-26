@@ -51,8 +51,8 @@
 			background: #d1e1df;
 			border-top-left-radius: 1rem;
 			border-top-right-radius: 1rem;
-	
-	
+
+
 			opacity: 0.5;
 			z-index: 1;
 		}
@@ -94,7 +94,7 @@
 </head>
 
 <body>
-	<h1>My Terrarium</h1>
+	<h1 style="background-color: red;">My Terrarium</h1>
 	<div id="page">
 
 		<div id="left-container" class="container">
@@ -153,8 +153,27 @@
 			</div>
 		</div>
 
-		
+
 	</div>
+	<script>
+		let imgArr = document.querySelectorAll('img');
+		for (let i = 0; i < imgArr.length; i++) {
+			dragElement(imgArr[i]);
+		}
+		function dragElement(terrariumElement) {
+			//set 4 positions for positioning on the screen
+			let pos1 = 0,
+				pos2 = 0,
+				pos3 = 0,
+				pos4 = 0;
+			terrariumElement.addEventListener('pointerdown', showCoordinate);
+		}
+		function showCoordinate(e) {
+			console.dir(`(${parseInt(e.x)},${parseInt(e.y)})`);
+		}
+		console.log(imgArr[0]);
+
+	</script>
 </body>
 
 </html>
