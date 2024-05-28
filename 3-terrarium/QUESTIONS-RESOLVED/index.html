@@ -167,11 +167,39 @@
 				pos3 = 0,
 				pos4 = 0;
 			terrariumElement.addEventListener('pointerdown', showCoordinate);
+			terrariumElement.addEventListener('pointerdown', pointerDrag);
+			terrariumElement.addEventListener('pointermove', elementDrag);
+			terrariumElement.addEventListener('pointerup', stopElementDrag);
+
+			function stopElementDrag (){
+				document.onpointerup = null;
+				document.onpointermove = null;
+			}
+
+			function elementDrag(e) {
+				// console.log(`(${show(pos1)}, ${show(pos2)}) - (${show(pos3)}, ${show(pos4)})`)
+				pos1 = pos3 - e.clientX;
+				pos2 = pos4 - e.clientY;
+				pos3 = e.clientX;
+				pos4 = e.clientY;
+				console.log(`(${show(pos1)}, ${show(pos2)}) - (${show(pos3)}, ${show(pos4)})`)
+				terrariumElement.style.top = terrariumElement.offsetTop - pos2 + 'px';
+				terrariumElement.style.left = terrariumElement.offsetLeft - pos1 + 'px';
+			}
+			function pointerDrag(e) {
+				e.preventDefault();
+				console.log(`(${parseInt(e.clientX)}, ${parseInt(e.clientY)})`);
+				pos3 = e.clientX;
+				pos4 = e.clientY;
+			}
+		}
+
+		function show(num) {
+			return parseInt(num);
 		}
 		function showCoordinate(e) {
 			console.dir(`(${parseInt(e.x)},${parseInt(e.y)})`);
 		}
-		console.log(imgArr[0]);
 
 	</script>
 </body>
