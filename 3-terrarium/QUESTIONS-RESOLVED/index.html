@@ -7,7 +7,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="./style.css" />
+	<!-- <link rel="stylesheet" href="./style.css" /> -->
 	<script src="./script.js" defer></script>
 	<style>
 		body {
@@ -94,12 +94,12 @@
 </head>
 
 <body>
-	<h1 style="background-color: red;">My Terrarium</h1>
+	<h1 style="background-color: red;" draggable="true">My Terrarium</h1>
 	<div id="page">
 
 		<div id="left-container" class="container">
 			<div class="plant-holder">
-				<img class="plant" alt="plant" id="plant1" src="../solution/images/plant1.png" />
+				<img class="plant" alt="plant" id="plant1" src="../solution/images/plant1.png" onDragStart="onDragStart(event)" draggable="true"/>
 			</div>
 			<div class="plant-holder">
 				<img class="plant" alt="plant" id="plant2" src="../solution/images/plant2.png" />
@@ -155,7 +155,7 @@
 
 
 	</div>
-	<script>
+	<!-- <script>
 		let imgArr = document.querySelectorAll('img');
 		for (let i = 0; i < imgArr.length; i++) {
 			dragElement(imgArr[i]);
@@ -201,7 +201,41 @@
 			console.dir(`(${parseInt(e.x)},${parseInt(e.y)})`);
 		}
 
-	</script>
+	</script> -->
 </body>
 
 </html>
+
+<!-- https://stackoverflow.com/questions/57435575/how-to-make-a-draggable-element-stay-at-the-new-position-when-dropped-html5-not -->
+<!-- let offsetX;
+let offsetY;
+
+onDragStart = function(ev) {
+  const rect = ev.target.getBoundingClientRect();
+
+  offsetX = ev.clientX - rect.x;
+  offsetY = ev.clientY - rect.y;
+};
+
+drop_handler = function(ev) {
+  ev.preventDefault();
+
+  const left = parseInt(id2.style.left);
+  const top = parseInt(id2.style.top);
+
+  id1.style.position = 'absolute';
+  id1.style.left = ev.clientX - left - offsetX + 'px';
+  id1.style.top = ev.clientY - top - offsetY + 'px';
+  id2.appendChild(document.getElementById("id1"));
+};
+
+dragover_handler = function(ev) {
+  ev.preventDefault();
+  ev.dataTransfer.dropEffect = "move";
+};
+
+<div id="id1" draggable="true" ondragstart="onDragStart(event)" style="border:2px solid green; cursor:pointer;width:100px;height:50px;">Dragged Div</div>
+
+
+<div id="id2" style="position:absolute;left:200px;top:50px;border:2px solid red; cursor:pointer;width:200px;height:200px;" ondrop="drop_handler(event)" ondragover="dragover_handler(event)">Drop Div
+</div> -->
